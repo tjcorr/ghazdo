@@ -87,9 +87,7 @@ foreach ($Bundle in $Bundles) {
     New-Item -Path $CodeQLToolcachePath -ItemType Directory -Force | Out-Null
 
     Write-Host "Unpacking the downloaded CodeQL bundle archive..."
-    tar -xzf $CodeQLBundlePath -C $DownloadDirectoryPath
-    $UnGzipedCodeQLBundlePath = Join-Path $DownloadDirectoryPath "codeql-bundle.tar"
-    tar -xzf $UnGzipedCodeQLBundlePath -C $CodeQLToolcachePath
+    tar -xzf $CodeQLBundlePath -C $CodeQLToolcachePath
 
     # We only pin the latest version in the toolcache, to support overriding the CodeQL version specified in defaults.json on GitHub Enterprise.
     if ($Bundle.BundleVersion -eq $CodeQLBundleVersion) {
